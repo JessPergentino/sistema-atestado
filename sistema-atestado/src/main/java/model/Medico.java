@@ -1,9 +1,12 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,9 @@ public class Medico {
 	private String nome;
 	@Column(name="crm")
 	private String crm;
+	
+	@OneToMany(mappedBy = "medico")
+	private List<Atestado> atestados;
 
 	public Medico() {
 		// TODO Auto-generated constructor stub

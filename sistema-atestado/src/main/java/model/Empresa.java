@@ -9,11 +9,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "empresa")
 public class Empresa {
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(name="nome")
+	@Column(name = "nome")
 	private String nome;
 	@Column(name = "cnpj")
 	private String cnpj;
