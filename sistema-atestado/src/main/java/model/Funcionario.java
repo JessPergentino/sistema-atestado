@@ -17,7 +17,8 @@ public class Funcionario {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(name="nome")
+	
+	@Column(length = 40, nullable = false)
 	private String nome;
 
 	@ManyToOne()

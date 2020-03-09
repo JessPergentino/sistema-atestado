@@ -1,5 +1,0 @@
-package enumeracoes;
-
-public enum TipoExame {
-	ADMISSIONAL, PERIODICO, RETORNO_TRABALHO, DEMISSIONAL, TRANSFERENCIA_FUNCAO
-}

@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,7 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import enumeracoes.TipoExame;
+import converter.TipoExameConverter;
+import enumeracoes.TipoExameEnum;
 
 @Entity
 @Table(name = "atestado")
@@ -21,9 +23,11 @@ public class Atestado {
 	@GeneratedValue
 	private Long id;
 	
-	private Enum<TipoExame> tipoExame;
+	@Convert(converter = TipoExameConverter.class)
+    @Column(columnDefinition = "CHAR(2)", nullable = false)
+	private Enum<TipoExameEnum> tipoExame;
 	
-	@Column(name = "aptidao")
+	@Column(nullable = false)
 	private boolean aptidao;
 	
 	@OneToMany(mappedBy = "atestado")
@@ -41,17 +45,17 @@ public class Atestado {
 	public Atestado() {
 	}
 
-	public Atestado(Enum<TipoExame> tipoExame, boolean aptidao) {
+	public Atestado(Enum<TipoExameEnum> tipoExame, boolean aptidao) {
 		super();
 		this.tipoExame = tipoExame;
 		this.aptidao = aptidao;
 	}
 
-	public Enum<TipoExame> getTipoExame() {
+	public Enum<TipoExameEnum> getTipoExame() {
 		return tipoExame;
 	}
 
-	public void setTipoExame(Enum<TipoExame> tipoExame) {
+	public void setTipoExame(Enum<TipoExameEnum> tipoExame) {
 		this.tipoExame = tipoExame;
 	}
 

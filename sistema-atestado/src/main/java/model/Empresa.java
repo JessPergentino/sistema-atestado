@@ -13,13 +13,14 @@ public class Empresa {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(name = "nome")
+	
+	@Column(length = 40, nullable = false)
 	private String nome;
-	@Column(name = "cnpj")
+	
+	@Column(columnDefinition = "CHAR(14)", nullable = false, unique = true)
 	private String cnpj;
 
 	public Empresa() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Empresa(String nome, String cnpj) {

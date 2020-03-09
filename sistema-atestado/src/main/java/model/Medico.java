@@ -16,16 +16,17 @@ public class Medico {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(name="nome")
+	
+	@Column(length = 40, nullable = false)
 	private String nome;
-	@Column(name="crm")
+	
+	@Column(columnDefinition = "CHAR(10)", nullable = false, unique = true)
 	private String crm;
 	
 	@OneToMany(mappedBy = "medico")
 	private List<Atestado> atestados;
 
 	public Medico() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Medico(String nome, String crm) {
