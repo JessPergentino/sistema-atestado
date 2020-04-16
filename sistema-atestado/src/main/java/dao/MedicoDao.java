@@ -6,21 +6,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Risco;
+import model.Medico;
 
-public class RiscoDao {
-	private static RiscoDao instance;
+public class MedicoDao {
+	private static MedicoDao instance;
 	protected EntityManager entityManager;
 
-	public static RiscoDao getInstance() {
+	public static MedicoDao getInstance() {
 		if (instance == null) {
-			instance = new RiscoDao();
+			instance = new MedicoDao();
 		}
 
 		return instance;
 	}
 
-	public RiscoDao() {
+	public MedicoDao() {
 		entityManager = getEntityManager();
 	}
 
@@ -34,40 +34,39 @@ public class RiscoDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Risco> findAll() {
-		return entityManager.createQuery("FROM " + Risco.class.getName()).getResultList();
+	public List<Medico> findAll() {
+		return entityManager.createQuery("FROM " + Medico.class.getName()).getResultList();
 	}
 
-	public void persist(Risco risco) {
+	public void persist(Medico medico) {
 		try {
-			entityManager.persist(risco);
+			entityManager.persist(medico);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			entityManager.getTransaction().rollback();
 		}
 	}
 
-	public void merge(Risco risco) {
+	public void merge(Medico medico) {
 		try {
-			entityManager.merge(risco);
+			entityManager.merge(medico);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			entityManager.getTransaction().rollback();
 		}
 	}
 
-	public void remove(Risco risco) {
+	public void remove(Medico medico) {
 		try {
-			risco = entityManager.find(Risco.class, risco.getId());
-			entityManager.remove(risco);
+			medico = entityManager.find(Medico.class, medico.getId());
+			entityManager.remove(medico);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			entityManager.getTransaction().rollback();
 		}
 	}
 
-	public Risco getById(final Long id) {
-		return entityManager.find(Risco.class, id);
+	public Medico getById(final Long id) {
+		return entityManager.find(Medico.class, id);
 	}
-
 }

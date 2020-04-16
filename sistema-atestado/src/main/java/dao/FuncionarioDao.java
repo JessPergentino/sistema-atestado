@@ -6,21 +6,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Risco;
+import model.Funcionario;
 
-public class RiscoDao {
-	private static RiscoDao instance;
+public class FuncionarioDao {
+	private static FuncionarioDao instance;
 	protected EntityManager entityManager;
 
-	public static RiscoDao getInstance() {
+	public static FuncionarioDao getInstance() {
 		if (instance == null) {
-			instance = new RiscoDao();
+			instance = new FuncionarioDao();
 		}
 
 		return instance;
 	}
 
-	public RiscoDao() {
+	public FuncionarioDao() {
 		entityManager = getEntityManager();
 	}
 
@@ -34,40 +34,39 @@ public class RiscoDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Risco> findAll() {
-		return entityManager.createQuery("FROM " + Risco.class.getName()).getResultList();
+	public List<Funcionario> findAll() {
+		return entityManager.createQuery("FROM " + Funcionario.class.getName()).getResultList();
 	}
 
-	public void persist(Risco risco) {
+	public void persist(Funcionario funcionario) {
 		try {
-			entityManager.persist(risco);
+			entityManager.persist(funcionario);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			entityManager.getTransaction().rollback();
 		}
 	}
 
-	public void merge(Risco risco) {
+	public void merge(Funcionario funcionario) {
 		try {
-			entityManager.merge(risco);
+			entityManager.merge(funcionario);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			entityManager.getTransaction().rollback();
 		}
 	}
 
-	public void remove(Risco risco) {
+	public void remove(Funcionario funcionario) {
 		try {
-			risco = entityManager.find(Risco.class, risco.getId());
-			entityManager.remove(risco);
+			funcionario = entityManager.find(Funcionario.class, funcionario.getId());
+			entityManager.remove(funcionario);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			entityManager.getTransaction().rollback();
 		}
 	}
 
-	public Risco getById(final Long id) {
-		return entityManager.find(Risco.class, id);
+	public Funcionario getById(final Long id) {
+		return entityManager.find(Funcionario.class, id);
 	}
-
 }

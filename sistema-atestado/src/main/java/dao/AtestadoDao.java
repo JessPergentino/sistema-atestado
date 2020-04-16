@@ -6,21 +6,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Risco;
+import model.Atestado;
 
-public class RiscoDao {
-	private static RiscoDao instance;
+public class AtestadoDao {
+	private static AtestadoDao instance;
 	protected EntityManager entityManager;
 
-	public static RiscoDao getInstance() {
+	public static AtestadoDao getInstance() {
 		if (instance == null) {
-			instance = new RiscoDao();
+			instance = new AtestadoDao();
 		}
 
 		return instance;
 	}
 
-	public RiscoDao() {
+	public AtestadoDao() {
 		entityManager = getEntityManager();
 	}
 
@@ -34,40 +34,39 @@ public class RiscoDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Risco> findAll() {
-		return entityManager.createQuery("FROM " + Risco.class.getName()).getResultList();
+	public List<Atestado> findAll() {
+		return entityManager.createQuery("FROM " + Atestado.class.getName()).getResultList();
 	}
 
-	public void persist(Risco risco) {
+	public void persist(Atestado atestado) {
 		try {
-			entityManager.persist(risco);
+			entityManager.persist(atestado);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			entityManager.getTransaction().rollback();
 		}
 	}
 
-	public void merge(Risco risco) {
+	public void merge(Atestado atestado) {
 		try {
-			entityManager.merge(risco);
+			entityManager.merge(atestado);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			entityManager.getTransaction().rollback();
 		}
 	}
 
-	public void remove(Risco risco) {
+	public void remove(Atestado atestado) {
 		try {
-			risco = entityManager.find(Risco.class, risco.getId());
-			entityManager.remove(risco);
+			atestado = entityManager.find(Atestado.class, atestado.getId());
+			entityManager.remove(atestado);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			entityManager.getTransaction().rollback();
 		}
 	}
 
-	public Risco getById(final Long id) {
-		return entityManager.find(Risco.class, id);
+	public Atestado getById(final Long id) {
+		return entityManager.find(Atestado.class, id);
 	}
-
 }
